@@ -11,7 +11,7 @@ public interface ProductService
 
 	List<ProductDto> getAllProducts();
 
-	ProductDto getProductById(Long id);
+	ProductDto getProductById(Long id) throws Exception;
 
 	void createProducts(List<Product> products);
 

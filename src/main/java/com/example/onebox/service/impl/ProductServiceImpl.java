@@ -26,9 +26,8 @@ public class ProductServiceImpl implements ProductService
 	{
 		Product productToCreate = productMapper.toEntity(product);
 
-		//Product productToBeChecked = productRepository.findByDescriptionIsLike(productToCreate.getDescription());
+
 		if(productRepository.findByDescriptionIsLike(productToCreate.getDescription()))
-		//if(productToBeChecked != null)
 		{
 			throw new Exception("Product with id " + productToCreate.getId() + " already exist");
 		}
@@ -38,15 +37,15 @@ public class ProductServiceImpl implements ProductService
 	@Override
 	public List<ProductDto> getAllProducts()
 	{
-		return productMapper.toDto(productRepository.findAll());
+		return productMapper.toDtoList(productRepository.findAll());
 	}
 
 	@Override
-	public ProductDto getProductById(Long id)
+	public ProductDto getProductById(Long id) throws Exception
 	{
 		if (!productRepository.existsById(id))
 		{
-			throw new IllegalArgumentException("Product with id " + id + " don't exist");
+			throw new Exception("Product with id " + id + " don't exist");
 		}
 
 		return productMapper.toDto( productRepository.getById(id));

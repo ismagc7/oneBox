@@ -7,11 +7,13 @@ import com.example.onebox.persistence.repository.CartRepository;
 import com.example.onebox.service.CartService;
 import com.example.onebox.service.ProductService;
 import com.example.onebox.web.converter.CartMapper;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 
+@Slf4j
 @Service
 public class CartServiceImpl implements CartService
 {
@@ -38,26 +40,25 @@ public class CartServiceImpl implements CartService
 				throw new Exception("There are Products that not exists");
 			}
 		}
-
 		return cartMapper.toCartDTO(cartRepository.save(cart));
 	}
 
 	@Override
-	public void deleteCartById(Long id)
+	public void deleteCartById(Long id) throws Exception
 	{
 		if (!cartRepository.existsById(id))
 		{
-			throw new IllegalArgumentException("Cart with id " + id + " does not exist");
+			throw new Exception("Cart with id " + id + " does not exist");
 		}
 		cartRepository.deleteById(id);
 	}
 
 	@Override
-	public CartDto getCartById(Long id)
+	public CartDto getCartById(Long id) throws Exception
 	{
 		if(!cartRepository.existsById(id))
 		{
-			throw new IllegalArgumentException("Cart with id " + id + " does not exist");
+			throw new Exception("Cart with id " + id + " does not exist");
 		}
 		return cartMapper.toCartDTO(cartRepository.getById(id));
 	}

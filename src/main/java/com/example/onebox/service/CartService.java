@@ -8,9 +8,9 @@ public interface CartService
 {
 	CartDto createCart(CartDto cartDto) throws Exception;
 
-	void deleteCartById(Long id);
+	void deleteCartById(Long id) throws Exception;
 
-	CartDto getCartById(Long id);
+	CartDto getCartById(Long id) throws Exception;
 
 	CartDto updateCart(CartDto cartDto) throws Exception;
 
