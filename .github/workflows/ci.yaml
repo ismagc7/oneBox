@@ -1,0 +1,11 @@
+name: FirstAction
+
+on: [push]
+
+jobs:
+  - name: build
+    runs-on: ubuntu-latest
+    steps:
+      - name: buildstep
+        uses: actions/checkout@v2
+        run: echo "Hello World"
