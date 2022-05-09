@@ -3,7 +3,7 @@ name: FirstAction
 on: [push]
 
 jobs:
-  - name: build
+  build:
     runs-on: ubuntu-latest
     steps:
       - name: buildstep
